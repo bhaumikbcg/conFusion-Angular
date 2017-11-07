@@ -19,7 +19,7 @@ export class PromotionService {
 
   getFeaturedPromotion(): Promise<Promotion> {
     return new Promise(resolve => {
-      setTimeout(() => resolve (LEADERS.filter((leader) => leader.featured)[0]), 2000);
+      setTimeout(() => resolve (PROMOTIONS.filter((leader) => leader.featured)[0]), 2000);
     });
   }
 }
