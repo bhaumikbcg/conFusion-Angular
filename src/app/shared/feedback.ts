@@ -9,3 +9,10 @@ export class Feedback {
 };
 
 export const ContactType = ['None', 'Tel', 'Email'];
+
+export class DishFeedback{
+    author: string;
+    rating: number;
+    comment: string;
+    date: string;
+};
