@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {Dish} from '../shared/dish';
 import {DishService} from '../services/dish.service';
 import {Params, ActivatedRoute} from '@angular/router';
@@ -13,7 +13,7 @@ import { DishFeedback } from '../shared/feedback';
   templateUrl: './dish-detail.component.html',
   styleUrls: ['./dish-detail.component.scss']
 })
-export class DishDetailComponent implements OnInit {
+export class DishdetailComponent implements OnInit {
   
   dish: Dish;
   dishIds: number[];
@@ -42,7 +42,7 @@ export class DishDetailComponent implements OnInit {
     constructor(private dishservice: DishService,
       private route: ActivatedRoute,
       private location: Location,
-      private fb: FormBuilder) { 
+      private fb: FormBuilder, @Inject('BaseURL') private BaseURL) { 
         this.createForm();
       }
   
