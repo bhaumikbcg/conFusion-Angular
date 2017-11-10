@@ -3,6 +3,7 @@ import {Dish} from '../shared/dish';
 import { DISHES } from '../shared/dishes';
 import { Observable } from 'rxjs/Observable';
 
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/of';
 import 'rxjs/add/operator/catch';
