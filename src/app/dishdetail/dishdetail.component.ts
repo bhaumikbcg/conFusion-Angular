@@ -19,6 +19,7 @@ export class DishdetailComponent implements OnInit {
   dishIds: number[];
   prev: number;
   next: number;
+  dishCopy = null;
 
   feedbackForm: FormGroup;
   feedback: DishFeedback;
@@ -48,7 +49,7 @@ export class DishdetailComponent implements OnInit {
   
     ngOnInit() {
       this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds, errmess => this.errMess = <any>errmess);
-      this.route.params.switchMap((params: Params) => this.dishservice.getDish(+params['id'])).subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
+      this.route.params.switchMap((params: Params) => {return this.dishservice.getDish(+params['id']);}).subscribe(dish => { this.dish = dish; this.dishCopy = dish; this.setPrevNext(dish.id); }, errmess => {this.dish = null; this.errMess = <any>errmess;});
     }
   
     setPrevNext(dishId: number) {
@@ -100,6 +101,9 @@ export class DishdetailComponent implements OnInit {
         comment: '',
         date: Date.now()
       });
+      this.dishCopy.comments.push(this.comment);
+      this.dishCopy.save()
+        .subscribe(dish => { this.dish = dish; console.log(this.dish); });
       //make form pristine if possible
     }
 
